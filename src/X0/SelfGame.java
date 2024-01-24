@@ -1,4 +1,4 @@
-package src;
+package X0;
 
 public class SelfGame extends Game {
     private Player player1;

@@ -1,4 +1,4 @@
-package src;
+package X0;
 
 public class UserGame extends Game {
     private Player autonomousPlayer;

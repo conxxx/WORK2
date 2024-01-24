@@ -1,4 +1,4 @@
-package src;
+package X0;
 
 import java.util.List;
 
@@ -31,11 +31,13 @@ public abstract class Game {
 
 
     public synchronized void declareWinner(PlayerType winner) {
+        printBoard();
         System.out.println("Player " + winner + " wins!");
         gameOver = true;
     }
 
     public synchronized void declareDraw() {
+        printBoard();
         System.out.println("The game is a draw!");
         gameOver = true;
     }

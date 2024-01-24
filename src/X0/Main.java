@@ -1,5 +1,5 @@
 //https://github.com/conxxx/WORK2.git
-package src;
+package X0;
 
 import java.util.Scanner;
 
