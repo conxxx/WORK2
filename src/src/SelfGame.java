@@ -33,7 +33,7 @@ public class SelfGame extends Game {
                 printBoard();
             }
             try {
-                Thread.sleep(1500); // Slight delay for turn
+                Thread.sleep(500); // Slight delay for turn
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }

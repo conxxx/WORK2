@@ -1,8 +1,57 @@
 package src;
 
+import java.util.List;
+
 public abstract class Game {
     protected Board board;
     protected PlayerType currentPlayer;
+
+    public abstract void startGame();
+    protected boolean gameOver;
+    protected Cell lastMove;
+    public Game() {
+        board = new Board();
+        currentPlayer = PlayerType.X; // X starts by default
+        gameOver = false;
+    }
+    public synchronized void printBoard() {
+        board.printBoard();
+    }
+    public synchronized boolean isGameOver() {
+        return gameOver;
+    }
+
+    public List<Cell> getFreeCells() {
+        return board.getFreeCells();
+    }
+
+
+
+  //  public abstract boolean makeMove();
+
+
+    public synchronized void declareWinner(PlayerType winner) {
+        System.out.println("Player " + winner + " wins!");
+        gameOver = true;
+    }
+
+    public synchronized void declareDraw() {
+        System.out.println("The game is a draw!");
+        gameOver = true;
+    }
+
+    protected synchronized void getTurn() {
+        currentPlayer = (currentPlayer == PlayerType.X) ? PlayerType.O : PlayerType.X;
+    }
+
+    public synchronized void updateGameState(Cell lastMove) {
+        if (board.isWinningMove(lastMove)) {
+            declareWinner(currentPlayer);
+        } else if (board.isBoardFull()) {
+            declareDraw();
+        }
+    }
+
 
     public Board getBoard() {
         return board;
@@ -32,49 +81,7 @@ public abstract class Game {
         this.lastMove = lastMove;
     }
 
-    protected boolean gameOver;
-    protected Cell lastMove;
 
-    public Game() {
-        board = new Board();
-        currentPlayer = PlayerType.X; // X starts by default
-        gameOver = false;
-    }
-
-    public synchronized void printBoard() {
-        board.printBoard();
-    }
-
-  //  public abstract boolean makeMove();
-
-    public synchronized boolean isGameOver() {
-        return gameOver;
-    }
-
-    public synchronized void declareWinner(PlayerType winner) {
-        System.out.println("Player " + winner + " wins!");
-        gameOver = true;
-    }
-
-    public synchronized void declareDraw() {
-        System.out.println("The game is a draw!");
-        gameOver = true;
-    }
-
-    protected synchronized void switchTurns() {
-        currentPlayer = (currentPlayer == PlayerType.X) ? PlayerType.O : PlayerType.X;
-    }
-
-    public synchronized void updateGameState(Cell lastMove) {
-        if (board.isWinningMove(lastMove)) {
-            declareWinner(currentPlayer);
-        } else if (board.isBoardFull()) {
-            declareDraw();
-        }
-    }
-
-    public abstract void startGame();
-
-  //  public abstract boolean makeMove();
+    //  public abstract boolean makeMove();
     // Other getters and setters...
 }

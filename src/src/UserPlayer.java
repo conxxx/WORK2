@@ -19,7 +19,7 @@ public class UserPlayer extends Player {
         game.getBoard().placeMark(selectedCell, playerType);
         game.updateGameState(selectedCell);
 
-        game.switchTurns();
+        game.getTurn();
         return selectedCell;
     }
     private Cell getUserInputForMove() {

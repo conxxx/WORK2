@@ -17,7 +17,7 @@ public class SelfPlayer extends Player {
             return null;
         }
 
-        List<Cell> freeCells = game.getBoard().getFreeCells();
+        List<Cell> freeCells = game.getFreeCells();
         Cell selectedCell = null;
         if (!freeCells.isEmpty()) {
             selectedCell = freeCells.get(random.nextInt(freeCells.size()));
@@ -25,7 +25,7 @@ public class SelfPlayer extends Player {
             game.updateGameState(selectedCell);
         }
 
-        game.switchTurns();
+        game.getTurn();
         return selectedCell;
     }
 }
